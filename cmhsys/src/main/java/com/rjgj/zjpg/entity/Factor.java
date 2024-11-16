@@ -4,7 +4,7 @@ public class Factor {
     private String factor_type;
     private int stdId;
     private String factor_name;
-    private String factor_value;
+    private float factor_value;
 
     public Factor() {
     }
@@ -33,11 +33,11 @@ public class Factor {
         this.factor_name = factor_name;
     }
 
-    public String getFactor_value() {
+    public float getFactor_value() {
         return factor_value;
     }
 
-    public void setFactor_value(String factor_value) {
+    public void setFactor_value(float factor_value) {
         this.factor_value = factor_value;
     }
 }

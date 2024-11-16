@@ -24,4 +24,11 @@ public class FactorBiz {
             return null;
         }
     }
+
+    public boolean addFactor(Factor factor) {
+        if (factor!= null) {
+            return mapper.insertFactor(factor);
+        }
+        return false;
+    }
 }

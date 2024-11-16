@@ -29,4 +29,17 @@ public class FactorController {
         map.put("msg", "查询成功");
         return map;
     }
+
+    @RequestMapping("/add")
+    public Map<String, Object> add(@RequestBody Factor factor){
+        Map map = new HashMap();
+        if(biz.addFactor(factor)){
+            map.put("isOk",true);
+            map.put("msg","添加成功");
+        }else{
+            map.put("isOk",false);
+            map.put("msg","添加失败");
+        }
+        return map;
+    }
 }
