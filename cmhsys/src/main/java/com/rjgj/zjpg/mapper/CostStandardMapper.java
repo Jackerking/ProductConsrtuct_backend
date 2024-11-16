@@ -20,16 +20,19 @@ public interface CostStandardMapper {
     )
     public boolean insertCostStandard(CostStandard costStandard);
 
-    @Update(
-            "update cost_std set " +
-                    "stdName = #{stdName}, " +
-                    "PDR = #{PDR}, " +
-                    "intro = #{intro}, " +
-                    "createTime = CURRENT_TIMESTAMP, " +
-                    "type = #{type}, " +
-                    "enable = #{enable} " +
-                    "where stdId = #{stdId}"
-    )
+//    @Update(
+//            "update cost_std set " +
+//                    "stdName = #{stdName}, " +
+//                    "PDR = #{PDR}, " +
+//                    "intro = #{intro}, " +
+//                    "createTime = CURRENT_TIMESTAMP, " +
+//                    "type = #{type}, " +
+//                    "enable = #{enable} " +
+//                    "where stdId = #{stdId}"
+//    )
+//    public boolean updateCostStandard(CostStandard costStandard);
+
+    @Update("update cost_std set enable = #{enable} where stdId = #{stdId}")
     public boolean updateCostStandard(CostStandard costStandard);
 
     @Delete("delete from cost_std where stdId = #{stdId}")
