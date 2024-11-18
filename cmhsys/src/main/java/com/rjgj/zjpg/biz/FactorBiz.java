@@ -28,5 +28,22 @@ public class FactorBiz {
         return mapper.deleteFactorsByStdId(stdId);
     }
 
+    public boolean addFactor(Factor factor) {
+        if (factor!= null) {
+            return mapper.insertFactor(factor);
+        }
+        return false;
+    }
+
+    public boolean addFactors(List<Factor> factorList) {
+        try {
+            // 调用 Mapper 层保存数据
+            int insertedCount = mapper.batchInsertFactors(factorList);
+            return insertedCount == factorList.size();  // 如果插入的记录数与提供的列表大小一致，则表示成功
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
 }

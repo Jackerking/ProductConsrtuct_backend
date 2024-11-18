@@ -15,24 +15,22 @@ public interface CostStandardMapper {
     public CostStandard getCostStandardById(int stdId);
 
     @Insert(
-            "insert into cost_std (stdName, pdr, createTime, intro, type, enable) "+
+            "insert into cost_std (stdName, pdr, createTime, intro, type, enable) " +
                     "values (#{stdName}, #{pdr}, CURRENT_TIMESTAMP, #{intro}, #{type}, #{enable})"
-    )
+                    )
+    @Options(useGeneratedKeys = true, keyProperty = "stdId", keyColumn = "stdId")
     public boolean insertCostStandard(CostStandard costStandard);
-
-//    @Update(
-//            "update cost_std set " +
-//                    "stdName = #{stdName}, " +
-//                    "PDR = #{PDR}, " +
-//                    "intro = #{intro}, " +
-//                    "createTime = CURRENT_TIMESTAMP, " +
-//                    "type = #{type}, " +
-//                    "enable = #{enable} " +
-//                    "where stdId = #{stdId}"
-//    )
-//    public boolean updateCostStandard(CostStandard costStandard);
-
-    @Update("update cost_std set enable = #{enable} where stdId = #{stdId}")
+    
+    @Update(
+            "update cost_std set " +
+                    "stdName = #{stdName}, " +
+                    "PDR = #{pdr}, " +
+                    "intro = #{intro}, " +
+                    "createTime = CURRENT_TIMESTAMP, " +
+                    "type = #{type}, " +
+                    "enable = #{enable} " +
+                    "where stdId = #{stdId}"
+    )
     public boolean updateCostStandard(CostStandard costStandard);
 
     @Delete("delete from cost_std where stdId = #{stdId}")

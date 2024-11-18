@@ -36,11 +36,44 @@ public class FactorController {
         if(biz.deleteFactors(stdId)){
             map.put("isOk",true);
             map.put("msg","删除成功");
-        }else{
-            map.put("isOk",false);
-            map.put("msg","删除失败");
+        }else {
+            map.put("isOk", false);
+            map.put("msg", "删除失败");
         }
         return map;
     }
 
+
+    @RequestMapping("/add")
+    public Map<String, Object> add(@RequestBody Factor factor){
+        Map map = new HashMap();
+        if(biz.addFactor(factor)){
+            map.put("isOk",true);
+            map.put("msg","添加成功");
+        }else{
+            map.put("isOk",false);
+            map.put("msg","添加失败");
+        }
+        return map;
+    }
+
+    @RequestMapping("/addFactors")
+    public Map<String, Object> addFactors(@RequestBody List<Factor> factorList) {
+        Map<String, Object> map = new HashMap<>();
+        try {
+            boolean isSaved = biz.addFactors(factorList);
+            if (isSaved) {
+                map.put("isOk", true);
+                map.put("msg", "因子选项保存成功");
+            } else {
+                map.put("isOk", false);
+                map.put("msg", "因子选项保存失败");
+            }
+        } catch (Exception e) {
+            map.put("isOk", false);
+            map.put("msg", "发生错误: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return map;
+    }
 }

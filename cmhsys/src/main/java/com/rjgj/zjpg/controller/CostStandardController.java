@@ -3,9 +3,7 @@ package com.rjgj.zjpg.controller;
 import com.rjgj.zjpg.biz.CostStandardBiz;
 import com.rjgj.zjpg.entity.CostStandard;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -27,6 +25,17 @@ public class CostStandardController {
         map.put("msg", "查询成功");
         return map;
     }
+
+    @RequestMapping("/get")
+    public Map getCostStandardById(@RequestParam int stdId) {
+        Map map = new HashMap();
+        CostStandard costStandard = biz.getCostStandard(stdId);
+        map.put("isOk", true);
+        map.put("CostStandard", costStandard);
+        map.put("msg", "查询成功");
+        return map;
+    }
+
     @RequestMapping("/add")
     public Map<String, Object> add(@RequestBody CostStandard costStandard){
         System.out.println(costStandard.getStdName());
@@ -38,6 +47,31 @@ public class CostStandardController {
         }else{
             map.put("isOk",false);
             map.put("msg","添加失败");
+        }
+        return map;
+    }
+
+
+    //在添加标准后获取 stdId
+    @RequestMapping("/addForStdId")
+    public Map<String, Object> addForStdId(@RequestBody CostStandard costStandard) {
+        Map<String, Object> map = new HashMap<>();
+        try {
+            // 添加标准
+            boolean isAdded = biz.addCostStandard(costStandard);
+            System.out.println(costStandard.getStdId());
+            if (isAdded) {
+                map.put("isOk", true);
+                map.put("msg", "添加成功");
+                // 返回插入后的 stdId
+                map.put("stdId", costStandard.getStdId());
+            } else {
+                map.put("isOk", false);
+                map.put("msg", "添加失败");
+            }
+        } catch (Exception e) {
+            map.put("isOk", false);
+            map.put("msg", "发生错误：" + e.getMessage());
         }
         return map;
     }
