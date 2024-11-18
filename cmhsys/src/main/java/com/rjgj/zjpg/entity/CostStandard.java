@@ -5,7 +5,7 @@ import java.util.Date;
 public class CostStandard {
     private int stdId;
     private String stdName;
-    private float PDR;
+    private float pdr;
     private Date createTime;
     private String intro ;
     private Type type;
@@ -37,12 +37,12 @@ public class CostStandard {
         this.stdName = stdName;
     }
 
-    public float getPDR() {
-        return PDR;
+    public float getPdr() {
+        return pdr;
     }
 
-    public void setPDR(float PDR) {
-        this.PDR = PDR;
+    public void setPdr(float pdr) {
+        this.pdr = pdr;
     }
 
     public Date getCreateTime() {

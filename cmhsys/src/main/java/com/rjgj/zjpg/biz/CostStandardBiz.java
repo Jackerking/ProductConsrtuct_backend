@@ -33,6 +33,8 @@ public class CostStandardBiz {
         }
         return false;
     }
+
+
     public boolean updateCostStandard(CostStandard costStandard) {
         if(costStandard != null){
             return mapper.updateCostStandard(costStandard);

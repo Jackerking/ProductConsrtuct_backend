@@ -15,15 +15,17 @@ public interface CostStandardMapper {
     public CostStandard getCostStandardById(int stdId);
 
     @Insert(
-            "insert into cost_std (stdName, PDR, createTime, intro, type, enable) "+
-                    "values (#{stdName}, #{PDR}, CURRENT_TIMESTAMP, #{intro}, #{type}, #{enable})"
+            "insert into cost_std (stdName, pdr, createTime, intro, type, enable) " +
+                    "values (#{stdName}, #{pdr}, CURRENT_TIMESTAMP, #{intro}, #{type}, #{enable})"
     )
+    @Options(useGeneratedKeys = true, keyProperty = "stdId", keyColumn = "stdId")
     public boolean insertCostStandard(CostStandard costStandard);
+
 
     @Update(
             "update cost_std set " +
                     "stdName = #{stdName}, " +
-                    "PDR = #{PDR}, " +
+                    "PDR = #{pdr}, " +
                     "intro = #{intro}, " +
                     "createTime = CURRENT_TIMESTAMP, " +
                     "type = #{type}, " +

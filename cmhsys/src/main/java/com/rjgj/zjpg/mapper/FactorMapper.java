@@ -21,4 +21,14 @@ public interface FactorMapper {
     @Delete("delete from factor where factor_type = #{factor_type} AND stdId = #{stdId} AND factor_name = #{factor_name}")
     public boolean deleteFactor(Factor factor);
 
+    @Insert({
+            "<script>",
+            "INSERT INTO factor (stdId, factor_type, factor_name, factor_value) VALUES",
+            "<foreach collection='list' item='factor' separator=','>",
+            "(#{factor.stdId}, #{factor.factor_type}, #{factor.factor_name}, #{factor.factor_value})",
+            "</foreach>",
+            "</script>"
+    })
+    int batchInsertFactors(@Param("list") List<Factor> factorList);
+
 }

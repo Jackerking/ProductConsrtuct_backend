@@ -42,4 +42,24 @@ public class FactorController {
         }
         return map;
     }
+
+    @RequestMapping("/addFactors")
+    public Map<String, Object> addFactors(@RequestBody List<Factor> factorList) {
+        Map<String, Object> map = new HashMap<>();
+        try {
+            boolean isSaved = biz.addFactors(factorList);
+            if (isSaved) {
+                map.put("isOk", true);
+                map.put("msg", "因子选项保存成功");
+            } else {
+                map.put("isOk", false);
+                map.put("msg", "因子选项保存失败");
+            }
+        } catch (Exception e) {
+            map.put("isOk", false);
+            map.put("msg", "发生错误: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return map;
+    }
 }
