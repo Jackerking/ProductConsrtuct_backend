@@ -21,4 +21,7 @@ public interface FactorMapper {
     @Delete("delete from factor where factor_type = #{factor_type} AND stdId = #{stdId} AND factor_name = #{factor_name}")
     public boolean deleteFactor(Factor factor);
 
+    @Delete("DELETE FROM factor WHERE stdId = #{stdId}")
+    public boolean deleteFactorsByStdId(@Param("stdId") int stdId);
+
 }

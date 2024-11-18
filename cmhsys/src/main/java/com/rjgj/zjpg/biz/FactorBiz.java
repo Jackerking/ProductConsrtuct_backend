@@ -24,4 +24,9 @@ public class FactorBiz {
             return null;
         }
     }
+    public boolean deleteFactors(int stdId) {
+        return mapper.deleteFactorsByStdId(stdId);
+    }
+
+
 }

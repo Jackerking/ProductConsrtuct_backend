@@ -15,8 +15,8 @@ public interface CostStandardMapper {
     public CostStandard getCostStandardById(int stdId);
 
     @Insert(
-            "insert into cost_std (stdName, PDR, createTime, intro, type, enable) "+
-                    "values (#{stdName}, #{PDR}, CURRENT_TIMESTAMP, #{intro}, #{type}, #{enable})"
+            "insert into cost_std (stdName, pdr, createTime, intro, type, enable) "+
+                    "values (#{stdName}, #{pdr}, CURRENT_TIMESTAMP, #{intro}, #{type}, #{enable})"
     )
     public boolean insertCostStandard(CostStandard costStandard);
 
@@ -37,7 +37,5 @@ public interface CostStandardMapper {
 
     @Delete("delete from cost_std where stdId = #{stdId}")
     public boolean deleteCostStandard(@Param("stdId") int stdId);
-
-
 
 }

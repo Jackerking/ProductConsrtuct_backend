@@ -29,6 +29,8 @@ public class CostStandardController {
     }
     @RequestMapping("/add")
     public Map<String, Object> add(@RequestBody CostStandard costStandard){
+        System.out.println(costStandard.getStdName());
+        System.out.println(costStandard.getpdr());
         Map map = new HashMap();
         if(biz.addCostStandard(costStandard)){
             map.put("isOk",true);
@@ -59,9 +61,6 @@ public class CostStandardController {
 
     @RequestMapping("/delete")
     public Map<String, Object> delete(@RequestBody CostStandard costStandard){
-        System.out.println("Received course: " + costStandard);
-        System.out.println(costStandard.getStdName());
-        System.out.println(costStandard.getStdId());
         Map map = new HashMap();
         if(biz.deleteCostStandard(costStandard)){
             map.put("isOk",true);

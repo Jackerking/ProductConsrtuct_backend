@@ -29,4 +29,18 @@ public class FactorController {
         map.put("msg", "查询成功");
         return map;
     }
+    @RequestMapping("/delete")
+    public Map<String, Object> delete(@RequestBody int stdId){
+        System.out.println(stdId);
+        Map map = new HashMap();
+        if(biz.deleteFactors(stdId)){
+            map.put("isOk",true);
+            map.put("msg","删除成功");
+        }else{
+            map.put("isOk",false);
+            map.put("msg","删除失败");
+        }
+        return map;
+    }
+
 }
