@@ -5,8 +5,9 @@ import com.rjgj.zjpg.entity.Province;
 import com.rjgj.zjpg.mapper.BasicRateMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.*;
+import java.util.List;
+
 
 @Service
 public class BasicRateBiz {
@@ -49,4 +50,5 @@ public class BasicRateBiz {
         }
         return provinces;
     }
+
 }

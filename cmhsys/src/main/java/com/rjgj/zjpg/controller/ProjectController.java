@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -48,5 +49,22 @@ ProjectController {
             }
              return map;
     }
+    // 获取项目列表
+    @GetMapping("/projects")
+    public List<Project> getProjectsByUserId(@RequestParam("userId") int userId) {
+        return projectbiz.getProjectsByUserId(userId);
+    }
+    // 删除项目接口
+    @DeleteMapping("/delete")
+    public String deleteProject(@RequestParam String projectName) {
+        boolean isDeleted = projectbiz.deleteProjectByName(projectName);
+        return isDeleted ? "项目删除成功" : "项目删除失败";
+    }
+    //模糊搜索
+    @GetMapping("/search")
+    public List<Project> searchProjects(@RequestParam String projectName) {
+        return projectbiz.searchProjectsByName(projectName);
+    }
+
 
 }
