@@ -10,7 +10,8 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/project")
-public class ProjectController {
+public class 
+ProjectController {
     @Autowired
     private ProjectBiz projectbiz;
     //创建项目
