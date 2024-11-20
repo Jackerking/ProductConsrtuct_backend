@@ -89,6 +89,7 @@ public class FactorController {
             int projectId = (int) request.get("projectId");
             int S = (int) request.get("S");
             // 安全转换为 float
+            float pdr = convertToFloat(request.get("pdr"));
             float SF = convertToFloat(request.get("SF"));
             float BD = convertToFloat(request.get("BD"));
             float QR = convertToFloat(request.get("QR"));
@@ -97,7 +98,8 @@ public class FactorController {
             float DT = convertToFloat(request.get("DT"));
             int personnelCosts = (int) request.get("personnelCosts");
             int stdId = (int) request.get("stdId");
-            float AE = calculateAdjustedEffort(S, personnelCosts, SF, BD, QR, AT, SL, DT);
+            float AE = calculateAdjustedEffort(S, pdr, SF, BD, QR, AT, SL, DT);
+            System.out.println("AE:"+AE);
             projectBiz.updateProjectAEAndPersonelCosts(projectId, AE, personnelCosts, stdId);
 
             // 你的逻辑代码
@@ -112,8 +114,8 @@ public class FactorController {
 
 
 
-    private float calculateAdjustedEffort(int S, int personnelCosts, float SF, float BD, float QR, float AT, float SL, float DT) {
-        return S / (float) personnelCosts * SF * BD * QR * AT * SL * DT;
+    private float calculateAdjustedEffort(int S, float pdr, float SF, float BD, float QR, float AT, float SL, float DT) {
+        return S / pdr * SF * BD * QR * AT * SL * DT;
     }
 
     // 辅助方法：转换为 Float 类型
