@@ -45,4 +45,9 @@ public class ProjectBiz {
         // 返回是否更新成功
         return rowsAffected > 0;
     }
+
+    public boolean updateProjectAEAndPersonelCosts(int projectId, float AE, int personnelCosts, int stdId) {
+        int rowsAffected = projectmapper.updateProjectAEAndPersonelCosts(projectId, AE, personnelCosts,stdId);
+        return rowsAffected > 0;
+    }
 }
