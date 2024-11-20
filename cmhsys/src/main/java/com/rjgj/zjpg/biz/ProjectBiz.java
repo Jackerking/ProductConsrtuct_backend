@@ -2,6 +2,7 @@ package com.rjgj.zjpg.biz;
 
 import com.rjgj.zjpg.entity.Project;
 import com.rjgj.zjpg.mapper.ProjectMapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,5 +39,10 @@ public class ProjectBiz {
     public List<Project> searchProjectsByName(String projectName) {
         return projectmapper.searchProjectsByName(projectName);
     }
-
+    public boolean updateProject(int projectId, Double unadjustedFunctionPoints,  Double adjustedFunctionPoints, int EI, int EO, int EQ,  int ILF, int EIF) {
+        // 调用 Mapper 层方法更新数据
+        int rowsAffected = projectmapper.updateProject(projectId, unadjustedFunctionPoints,  adjustedFunctionPoints,EI, EO, EQ, ILF, EIF);
+        // 返回是否更新成功
+        return rowsAffected > 0;
+    }
 }
