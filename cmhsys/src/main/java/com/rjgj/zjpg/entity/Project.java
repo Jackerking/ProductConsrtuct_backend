@@ -52,6 +52,7 @@ public class Project {
         this.stdId = stdId;
     }
 
+
     public float getAE() {
         return AE;
     }
