@@ -2,6 +2,7 @@ package com.rjgj.zjpg.controller;
 
 import com.rjgj.zjpg.biz.CostStandardBiz;
 import com.rjgj.zjpg.biz.FactorBiz;
+import com.rjgj.zjpg.biz.ProjectBiz;
 import com.rjgj.zjpg.entity.CostStandard;
 import com.rjgj.zjpg.entity.Factor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ import java.util.Map;
 public class FactorController {
     @Autowired
     private FactorBiz biz;
+    @Autowired
+    private ProjectBiz projectBiz;
+
 
     @RequestMapping("/find")
     public Map<String, Object> findStdFactors(@RequestParam String factor_type, @RequestParam int stdId) {
@@ -76,4 +80,58 @@ public class FactorController {
         }
         return map;
     }
+
+    @RequestMapping("/updateProject")
+    public Map<String, Object> updateProject(@RequestBody Map<String, Object> request) {
+        Map<String, Object> map = new HashMap<>();
+        try {
+            // 获取数据
+            int projectId = (int) request.get("projectId");
+            int S = (int) request.get("S");
+            // 安全转换为 float
+            float pdr = convertToFloat(request.get("pdr"));
+            float SF = convertToFloat(request.get("SF"));
+            float BD = convertToFloat(request.get("BD"));
+            float QR = convertToFloat(request.get("QR"));
+            float AT = convertToFloat(request.get("AT"));
+            float SL = convertToFloat(request.get("SL"));
+            float DT = convertToFloat(request.get("DT"));
+            int personnelCosts = (int) request.get("personnelCosts");
+            int stdId = (int) request.get("stdId");
+            float AE = calculateAdjustedEffort(S, pdr, SF, BD, QR, AT, SL, DT);
+            System.out.println("AE:"+AE);
+            projectBiz.updateProjectAEAndPersonelCosts(projectId, AE, personnelCosts, stdId);
+
+            // 你的逻辑代码
+            map.put("status", true);
+        } catch (Exception e) {
+            map.put("status", false);
+            map.put("message", "处理请求时发生错误: " + e.getMessage());
+        }
+
+        return map;
+    }
+
+
+
+    private float calculateAdjustedEffort(int S, float pdr, float SF, float BD, float QR, float AT, float SL, float DT) {
+        return S / pdr * SF * BD * QR * AT * SL * DT;
+    }
+
+    // 辅助方法：转换为 Float 类型
+    private float convertToFloat(Object value) {
+        if (value == null) {
+            return 0.0f; // 默认值
+        }
+        if (value instanceof Integer) {
+            return ((Integer) value).floatValue(); // 如果是 Integer，转为 Float
+        }
+        try {
+            return Float.parseFloat(value.toString()); // 尝试将其他类型转换为 float
+        } catch (NumberFormatException e) {
+            return 0.0f; // 如果转换失败，返回默认值
+        }
+    }
+
+
 }

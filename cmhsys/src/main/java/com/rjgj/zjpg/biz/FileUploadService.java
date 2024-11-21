@@ -48,6 +48,7 @@ public class FileUploadService {
             // 动态获取项目的根目录
             String uploadDir = "E:\\qianduanzuixin\\ProductConsrtuct_frontend\\public";
 
+
             // 确保文件夹存在
             File dir = new File(uploadDir);
             if (!dir.exists()) {

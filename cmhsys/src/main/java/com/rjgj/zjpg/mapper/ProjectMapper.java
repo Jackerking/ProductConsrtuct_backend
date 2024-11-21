@@ -29,5 +29,7 @@ public interface ProjectMapper {
     int updateProjectfilePath(@Param("projectId") int projectId,@Param("filePath") String filePath);
     @Update("update t_project set unadjustedFunctionPoints=#{unadjustedFunctionPoints},adjustedFunctionPoints=#{adjustedFunctionPoints},EI=#{EI},EO=#{EO},EQ=#{EQ},ILF=#{ILF},EIF=#{EIF} where projectId = #{projectId}")
     int updateProject(@Param("projectId") int projectId,@Param("unadjustedFunctionPoints") Double unadjustedFunctionPoints,@Param("adjustedFunctionPoints") Double adjustedFunctionPoints,@Param("EI") int EI,@Param("EO") int EO,@Param("EQ") int EQ,@Param("ILF") int ILF,@Param("EIF") int EIF);
+    @Update("update t_project set AE=#{AE},PersonnelCosts=#{PersonnelCosts},stdId=#{stdId} where projectId = #{projectId}")
+    int updateProjectAEAndPersonelCosts(@Param("projectId") int projectId,@Param("AE") float AE,@Param("PersonnelCosts") int PersonnelCosts,@Param("stdId") int stdId);
 
 }
