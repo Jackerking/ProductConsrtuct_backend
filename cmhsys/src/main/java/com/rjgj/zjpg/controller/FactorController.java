@@ -85,9 +85,10 @@ public class FactorController {
     public Map<String, Object> updateProject(@RequestBody Map<String, Object> request) {
         Map<String, Object> map = new HashMap<>();
         try {
+            System.out.println("request:"+request);
             // 获取数据
             int projectId = convertToInt(request.get("projectId")) ;
-            int S = convertToInt(request.get("S"));
+            float S = convertToFloat(request.get("S"));
             // 安全转换为 float
             float pdr = convertToFloat(request.get("pdr"));
             float SF = convertToFloat(request.get("SF"));
@@ -98,6 +99,7 @@ public class FactorController {
             float DT = convertToFloat(request.get("DT"));
             int personnelCosts = convertToInt(request.get("personnelCosts"));
             int stdId = convertToInt(request.get("stdId"));
+            System.out.println("S:"+S+"personnerlCots"+personnelCosts);
             float AE = calculateAdjustedEffort(S, pdr, SF, BD, QR, AT, SL, DT);
             System.out.println("AE:"+AE);
             projectBiz.updateProjectAEAndPersonelCosts(projectId, AE, personnelCosts, stdId);
@@ -114,7 +116,7 @@ public class FactorController {
 
 
 
-    private float calculateAdjustedEffort(int S, float pdr, float SF, float BD, float QR, float AT, float SL, float DT) {
+    private float calculateAdjustedEffort(float S, float pdr, float SF, float BD, float QR, float AT, float SL, float DT) {
         return S / pdr * SF * BD * QR * AT * SL * DT;
     }
 
