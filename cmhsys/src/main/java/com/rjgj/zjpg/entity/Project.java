@@ -8,12 +8,12 @@ public class Project {
     private int projectId; // 主键
     private String projectName;
     private int stdId;
-    private int AE;
+    private float AE;
     private float RSK;
     private int id;
     private double unadjustedFunctionPoints;
     private double adjustedFunctionPoints;
-    private double personnelCosts;
+    private int personnelCosts;
     private String filePath;
     private double totalCost;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -52,9 +52,7 @@ public class Project {
         this.stdId = stdId;
     }
 
-    public int getAE() {
-        return AE;
-    }
+
 
     public void setAE(int AE) {
         this.AE = AE;
@@ -96,7 +94,15 @@ public class Project {
         return personnelCosts;
     }
 
-    public void setPersonnelCosts(double personnelCosts) {
+    public float getAE() {
+        return AE;
+    }
+
+    public void setAE(float AE) {
+        this.AE = AE;
+    }
+
+    public void setPersonnelCosts(int personnelCosts) {
         this.personnelCosts = personnelCosts;
     }
 

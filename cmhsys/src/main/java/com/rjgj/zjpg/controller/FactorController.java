@@ -86,8 +86,8 @@ public class FactorController {
         Map<String, Object> map = new HashMap<>();
         try {
             // 获取数据
-            int projectId = (int) request.get("projectId");
-            int S = (int) request.get("S");
+            int projectId = convertToInt(request.get("projectId")) ;
+            int S = convertToInt(request.get("S"));
             // 安全转换为 float
             float pdr = convertToFloat(request.get("pdr"));
             float SF = convertToFloat(request.get("SF"));
@@ -96,8 +96,8 @@ public class FactorController {
             float AT = convertToFloat(request.get("AT"));
             float SL = convertToFloat(request.get("SL"));
             float DT = convertToFloat(request.get("DT"));
-            int personnelCosts = (int) request.get("personnelCosts");
-            int stdId = (int) request.get("stdId");
+            int personnelCosts = convertToInt(request.get("personnelCosts"));
+            int stdId = convertToInt(request.get("stdId"));
             float AE = calculateAdjustedEffort(S, pdr, SF, BD, QR, AT, SL, DT);
             System.out.println("AE:"+AE);
             projectBiz.updateProjectAEAndPersonelCosts(projectId, AE, personnelCosts, stdId);
@@ -133,5 +133,18 @@ public class FactorController {
         }
     }
 
+    private int convertToInt(Object value) {
+        if (value == null) {
+            return 0; // 默认值
+        }
+        if (value instanceof Integer) {
+            return (Integer) value; // 如果是 Integer，直接返回
+        }
+        try {
+            return Integer.parseInt(value.toString()); // 尝试将其他类型转换为 int
+        } catch (NumberFormatException e) {
+            return 0; // 如果转换失败，返回默认值
+        }
+    }
 
 }
