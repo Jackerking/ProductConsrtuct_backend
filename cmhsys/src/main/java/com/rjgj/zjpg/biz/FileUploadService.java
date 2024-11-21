@@ -46,7 +46,7 @@ public class FileUploadService {
             }
 
             // 动态获取项目的根目录
-            String uploadDir = "C:\\Users\\93229\\Desktop\\aaaaa\\ProductConsrtuct_frontend\\public";
+            String uploadDir = "E:\\qianduanzuixin\\ProductConsrtuct_frontend\\public";
 
             // 确保文件夹存在
             File dir = new File(uploadDir);
