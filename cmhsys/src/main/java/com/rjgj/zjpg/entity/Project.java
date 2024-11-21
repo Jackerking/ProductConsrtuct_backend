@@ -53,8 +53,11 @@ public class Project {
     }
 
 
+    public float getAE() {
+        return AE;
+    }
 
-    public void setAE(int AE) {
+    public void setAE(float AE) {
         this.AE = AE;
     }
 
@@ -90,16 +93,8 @@ public class Project {
         this.adjustedFunctionPoints = adjustedFunctionPoints;
     }
 
-    public double getPersonnelCosts() {
+    public int getPersonnelCosts() {
         return personnelCosts;
-    }
-
-    public float getAE() {
-        return AE;
-    }
-
-    public void setAE(float AE) {
-        this.AE = AE;
     }
 
     public void setPersonnelCosts(int personnelCosts) {

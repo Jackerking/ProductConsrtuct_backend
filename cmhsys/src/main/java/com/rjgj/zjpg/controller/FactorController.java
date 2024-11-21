@@ -102,6 +102,7 @@ public class FactorController {
             System.out.println("S:"+S+"personnerlCots"+personnelCosts);
             float AE = calculateAdjustedEffort(S, pdr, SF, BD, QR, AT, SL, DT);
             System.out.println("AE:"+AE);
+            System.out.println(111);
             projectBiz.updateProjectAEAndPersonelCosts(projectId, AE, personnelCosts, stdId);
 
             // 你的逻辑代码

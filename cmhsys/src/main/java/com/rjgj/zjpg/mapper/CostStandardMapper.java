@@ -20,16 +20,11 @@ public interface CostStandardMapper {
                     )
     @Options(useGeneratedKeys = true, keyProperty = "stdId", keyColumn = "stdId")
     public boolean insertCostStandard(CostStandard costStandard);
-    
+
     @Update(
-            "update cost_std set " +
-                    "stdName = #{stdName}, " +
-                    "PDR = #{pdr}, " +
-                    "intro = #{intro}, " +
-                    "createTime = CURRENT_TIMESTAMP, " +
-                    "type = #{type}, " +
+            "UPDATE cost_std SET " +
                     "enable = #{enable} " +
-                    "where stdId = #{stdId}"
+                    "WHERE stdId = #{stdId}"
     )
     public boolean updateCostStandard(CostStandard costStandard);
 
